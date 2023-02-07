@@ -1,0 +1,130 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\bin;C:\Ruby27-x64\bin;C:\Program Files\Python39\Scripts\;C:\Program Files\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\python27\;D:\python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\nvm;d:\nvm\nodejs;C:\Program Files (x86)\NetSarang\Xftp 7\;C:\TDM-GCC-64\bin;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\tools\cmder\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\devtools\protoc-3.18\bin;C:\Java\jdk1.8.0_191\bin;C:\Program Files (x86)\Bluetooth Command Line Tools\bin;D:\ienvs\maven-3.8.4\bin;D:\ienvs\gradle-7.4\bin;D:\Program Files\Git LFS;D:\nvm;C:\Program Files\nodejs;C:\Program Files\Go\bin;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\lanbery\AppData\Local\pnpm;C:\Users\lanbery\AppData\Local\Microsoft\WindowsApps;C:\Users\lanbery\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\GoLand 2021.1.3\bin;D:\gowork\bin;C:\Program Files\Git\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\bin;D:\Program Files\IntelliJ IDEA Community Edition 2021.3.2\bin;D:\nvm\nodejs;C:\Users\lanbery\go\bin;C:\Users\lanbery\.dotnet\tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EEXIST: file already exists, mkdir 'D:\2023_work\codetest_wsp\ts-monorepo-boilerplate\apps\remix-demo\node_modules\compression\node_modules'
+
+npm manifest: 
+  {
+    "name": "remix-demo",
+    "private": true,
+    "sideEffects": false,
+    "scripts": {
+      "build": "run-s build:*",
+      "build:css": "npm run generate:css -- --minify",
+      "build:remix": "remix build",
+      "build:server": "esbuild --platform=node --format=cjs ./server.ts --outdir=build --bundle",
+      "dev": "run-p dev:*",
+      "dev:build": "cross-env NODE_ENV=development npm run build:server -- --watch",
+      "dev:css": "cross-env NODE_ENV=development npm run generate:css -- --watch",
+      "dev:remix": "cross-env NODE_ENV=development remix watch",
+      "dev:server": "cross-env NODE_ENV=development node --inspect --require ./node_modules/dotenv/config --require ./mocks ./build/server.js",
+      "docker": "docker-compose up -d",
+      "format": "prettier --write .",
+      "generate:css": "tailwindcss -o ./app/styles/tailwind.css",
+      "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+      "setup": "prisma generate && prisma migrate deploy && prisma db seed",
+      "start": "cross-env NODE_ENV=production node ./build/server.js",
+      "start:mocks": "cross-env NODE_ENV=production node --require ./mocks --require dotenv/config ./build/server.js",
+      "test": "vitest",
+      "test:e2e:dev": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
+      "pretest:e2e:run": "npm run build",
+      "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run\"",
+      "typecheck": "tsc && tsc -p cypress",
+      "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run"
+    },
+    "prettier": {},
+    "eslintIgnore": [
+      "/node_modules",
+      "/build",
+      "/public/build",
+      "/postgres-data"
+    ],
+    "dependencies": {
+      "@prisma/client": "^4.9.0",
+      "@remix-run/express": "^1.12.0",
+      "@remix-run/node": "^1.12.0",
+      "@remix-run/react": "^1.12.0",
+      "@remix-run/server-runtime": "^1.12.0",
+      "bcryptjs": "^2.4.3",
+      "compression": "^1.7.4",
+      "cross-env": "^7.0.3",
+      "express": "^4.18.2",
+      "express-prometheus-middleware": "^1.2.0",
+      "isbot": "^3.6.5",
+      "morgan": "^1.10.0",
+      "prom-client": "^14.1.1",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "tiny-invariant": "^1.3.1"
+    },
+    "devDependencies": {
+      "@faker-js/faker": "^7.6.0",
+      "@remix-run/dev": "^1.12.0",
+      "@remix-run/eslint-config": "^1.12.0",
+      "@testing-library/cypress": "^8.0.7",
+      "@testing-library/dom": "^8.20.0",
+      "@testing-library/jest-dom": "^5.16.5",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^14.4.3",
+      "@types/bcryptjs": "^2.4.2",
+      "@types/compression": "^1.7.2",
+      "@types/eslint": "^8.4.10",
+      "@types/express": "^4.17.15",
+      "@types/express-prometheus-middleware": "^1.2.1",
+      "@types/morgan": "^1.9.4",
+      "@types/node": "^18.11.18",
+      "@types/react": "^18.0.26",
+      "@types/react-dom": "^18.0.10",
+      "@vitejs/plugin-react": "^3.0.1",
+      "@vitest/coverage-c8": "^0.27.2",
+      "autoprefixer": "^10.4.13",
+      "c8": "^7.12.0",
+      "cookie": "^0.5.0",
+      "cypress": "^10.11.0",
+      "dotenv": "^16.0.3",
+      "esbuild": "^0.17.2",
+      "eslint": "^8.32.0",
+      "eslint-config-prettier": "^8.6.0",
+      "eslint-plugin-cypress": "^2.12.1",
+      "happy-dom": "^8.1.4",
+      "msw": "^0.49.2",
+      "npm-run-all": "^4.1.5",
+      "postcss": "^8.4.21",
+      "prettier": "^2.8.3",
+      "prettier-plugin-tailwindcss": "^0.2.1",
+      "prisma": "^4.9.0",
+      "start-server-and-test": "^1.15.2",
+      "tailwindcss": "^3.2.4",
+      "ts-node": "^10.9.1",
+      "tsconfig-paths": "^4.1.2",
+      "typescript": "^4.9.4",
+      "vite": "^4.0.4",
+      "vite-tsconfig-paths": "^3.6.0",
+      "vitest": "^0.27.2"
+    },
+    "engines": {
+      "node": ">=14"
+    },
+    "prisma": {
+      "seed": "ts-node --require tsconfig-paths/register prisma/seed.ts"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

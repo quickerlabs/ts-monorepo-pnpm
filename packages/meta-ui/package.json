@@ -1,0 +1,19 @@
+{
+  "name": "@quickui/meta-ui",
+  "version": "1.0.0",
+  "description": "Base on React",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist & tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lanbery<lanbery@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
