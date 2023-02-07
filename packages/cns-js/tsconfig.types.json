@@ -1,0 +1,17 @@
+{
+    "exclude": [
+        "src/_admin/**",
+        "__tests__/**"
+    ],
+    "extends": "./tsconfig.base.json",
+    "include": [
+        "src/main.ts"
+    ],
+    "compilerOptions": {
+        "declaration": true,
+        "declarationMap": true,
+        "declarationDir": "./build/types",
+        "emitDeclarationOnly": true,
+        "sourceMap": false
+    }
+}

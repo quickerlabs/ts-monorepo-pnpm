@@ -1,0 +1,61 @@
+{
+  "name": "@coredao/cns-js",
+  "version": "1.0.0",
+  "description": "web3js cns",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "browser": {
+    "./lib/esm": "./lib.esm/index-browser.js"
+  },
+  "exports":{
+    ".":{
+      "browser":{
+        "default":"./lib/esm/browser.min.js"
+      }
+    },
+    "./cli":{
+      "import":"./dist/bin/cli.min.js",
+      "require":"./dist/bin/cli.js"
+    }
+  },
+  "bin": {
+    "cnsjs": "./"
+  },
+  "scripts": {
+    "build": "yarn clean && yarn build:tsc && yarn build:cjs && yarn build:types && yarn esbuild:bs && yarn esbuild:node",
+    "build:tsc": "tsc -p tsconfig.esm.json",
+    "build:cjs":"tsc --project tsconfig.commonjs.json && cp -r ./build/cjs ./dist/cjs",
+    "build:types":"tsc -p tsconfig.types.json && cp ./build/types/**.d.ts ./types/",
+    "lint": "eslint src/ --ext \".js,.jsx,.ts,.tsx\"",
+    "clean": "rm -rf dist build lib types && mkdir types dist",
+    "esbuild:bs": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=lib/esm/browser.min.js",
+    "esbuild:bs:dev": "esbuild src/browser.ts --bundle --outfile=lib/esm/browser.js",
+    "esbuild:bs:wactch": "esbuild src/browser.ts --bundle --watch --outfile=lib/esm/browser.js",
+    "esbuild:node": "esbuild src/cli.ts --platform=node --bundle --minify --sourcemap=external --outfile=dist/bin/cli.min.js",
+    "esbuild:node:dev": "esbuild src/cli.ts --platform=node --outfile=dist/bin/cli.js",
+    "esbuild:node:watch": "esbuild src/cli.ts --platform=node --watch --outfile=dist/bin/cli.js",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "author": "lanbery<lanbery@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "add": "^2.0.6",
+    "esbuild": "^0.17.2",
+    "eslint": "^8.32.0",
+    "jest": "^29.4.2",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0",
+    "typedoc": "^0.23.24",
+    "typescript": "^4.9.4",
+    "yarn": "^1.22.19"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
